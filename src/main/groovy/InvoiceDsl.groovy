@@ -175,7 +175,7 @@ class InvoiceDsl {
             head {
                 title "Invoice " + invoiceDsl.restaurantName
             }
-            body {
+            body(style:"font-family: sans-serif") {
                 form {
                     table(style: "border: 1px dotted #ccc") {
                         for (Map.Entry<Integer, String> entry : invoiceDsl.invoiceOrdering.entrySet()) {
@@ -191,7 +191,7 @@ class InvoiceDsl {
                                     case "restaurant_name":
                                         tr {
                                             td(colspan: arrayValue.size()) {
-                                                div(style: "font-weight: bold; font-size: 18px; text-align: center;", invoiceDsl.restaurantName)
+                                                div(style: "font-weight: bold; font-size: 22px; text-align: center;", invoiceDsl.restaurantName)
                                             }
                                         }
                                         break;
@@ -203,15 +203,16 @@ class InvoiceDsl {
                                         }
                                         break;
                                     case "cashier_name":
-                                        tr {
+                                        tr(style:"padding: 15px") {
                                             td(value: "Kasir: ") {
+                                                p("Kasir")
                                                 input(type: "text")
                                             }
                                         }
                                         break;
                                     case "thankyou_notes":
                                         tr {
-                                            td(style: "text-align: center", invoiceDsl.thankYouNotes)
+                                            td(style: "text-align: center; font-size: 13px; padding-top: 15px", invoiceDsl.thankYouNotes)
                                         }
                                         break;
                                     case "grand_total":
@@ -287,7 +288,7 @@ class InvoiceDsl {
                                                         break;
                                                     case "qty":
                                                     case "order_qty":
-                                                        th("Jlh")
+                                                        th("Jumlah")
                                                         rowCounter++;
                                                         break;
                                                     case "price":
@@ -394,7 +395,7 @@ class InvoiceDsl {
             service_charge "9"
             item_total "10"
             grand_total "11"
-            thankyou_notes "12", "Terima kasih"
+            thankyou_notes "12", "Terima kasih atas kunjungan Anda. Silakan datang kembali"
             html
         }
     }
