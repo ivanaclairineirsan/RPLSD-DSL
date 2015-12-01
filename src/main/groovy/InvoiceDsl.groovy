@@ -125,23 +125,20 @@ class InvoiceDsl {
                 if (!entry.getValue().contains("qty")) {
                     errorMessages.add("Table order_quantity must be entered")
                 }
-                if (!entry.getValue().contains("price")) {
-                    errorMessages.add("Table order_price must be entered")
-                }
+//                if (!entry.getValue().contains("price")) {
+//                    errorMessages.add("Table order_price must be entered")
+//                }
                 if (!entry.getValue().contains("subtotal")) {
                     errorMessages.add("Table order_subtotal must be entered")
                 }
             }
         }
 
-        if (!invoiceOrdering.containsValue("id")) {
-            errorMessages.add("Invoice ID must be entered")
-        }
+//        if (!invoiceOrdering.containsValue("id")) {
+//            errorMessages.add("Invoice ID must be entered")
+//        }
         if (!invoiceOrdering.containsValue("restaurant_name") || restaurantName.equals("")) {
             errorMessages.add("Restaurant name must be entered")
-        }
-        if (!invoiceOrdering.containsValue("address") || address.equals("")) {
-            errorMessages.add("Address must be entered")
         }
         if (orderRow == -1) {
             errorMessages.add("Order row must be entered and greater than 0")
@@ -149,9 +146,9 @@ class InvoiceDsl {
         if (!invoiceOrdering.containsValue("total")) {
             errorMessages.add("Total must be entered")
         }
-        if (!invoiceOrdering.containsValue("grand_total")) {
-            errorMessages.add("Grand total must be entered")
-        }
+//        if (!invoiceOrdering.containsValue("grand_total")) {
+//            errorMessages.add("Grand total must be entered")
+//        }
 
         if (errorMessages.size() == 0) {
             generateHtml(this)
@@ -216,9 +213,11 @@ class InvoiceDsl {
                                         }
                                         break;
                                     case "grand_total":
-                                        td(style: "text-align: right") {
-                                            label("Grand Total: ")
-                                            input(type: "number", disabled: true)
+                                        tr{
+                                            td(style: "text-align: right") {
+                                                label("Grand Total: ")
+                                                input(type: "number", disabled: true)
+                                            }
                                         }
                                         break;
                                     case "item_total":
@@ -297,7 +296,6 @@ class InvoiceDsl {
                                                         rowCounter++;
                                                         break;
                                                     case "subtotal":
-                                                    case "order_subtotal":
                                                         th("Subtotal")
                                                         rowCounter++;
                                                         break;
@@ -382,7 +380,6 @@ class InvoiceDsl {
             id "1"
             restaurant_name "2", "RM Sedap Malam"
             address "3", "Jalan Ganesha"
-            cashier_name "4"
             order_row 10
             order_no "5-1"
             order_name "5-2"
