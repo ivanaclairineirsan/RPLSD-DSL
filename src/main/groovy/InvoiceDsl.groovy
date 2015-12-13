@@ -203,8 +203,8 @@ class InvoiceDsl {
                                         break;
                                     case "cashier_name":
                                         tr(style:"padding: 15px") {
-                                            td(value: "Kasir: ") {
-                                                p("Kasir")
+                                            td("Kasir: ") {
+//                                                p("Kasir")
                                                 input(type: "text", class:"small-input")
                                             }
                                         }
