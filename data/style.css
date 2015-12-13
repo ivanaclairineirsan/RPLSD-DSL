@@ -1,0 +1,26 @@
+input{
+	border-radius: 3px;
+}
+.small-input {
+	/*width: 20px;*/
+	border-radius: 3px;
+}
+.restaurant_name{
+	font-weight: bold;
+	font-size: 22px;
+	text-align: center;
+}
+.id-invoice{
+	color: gray;
+	font-size: 13px;
+}
+.thankyou-note{
+	font-size: 13px;
+	text-align: center;
+	padding-top: 15px;
+}
+.address{
+	font-weight: bold;
+	font-size: 15px; 
+	text-align: center;
+}

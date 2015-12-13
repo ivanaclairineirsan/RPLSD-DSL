@@ -171,6 +171,8 @@ class InvoiceDsl {
         builder.html {
             head {
                 title "Invoice " + invoiceDsl.restaurantName
+                link(href:"style.css", rel:"stylesheet")
+                link(href:"bootstrap.min.css", rel:"stylesheet")
             }
             body(style:"font-family: sans-serif") {
                 form {
@@ -182,20 +184,20 @@ class InvoiceDsl {
                                 switch (arrayValue[0]) {
                                     case "id":
                                         tr {
-                                            td("No. 299")
+                                            td(class:"id-invoice", "No. 299")
                                         }
                                         break;
                                     case "restaurant_name":
                                         tr {
                                             td(colspan: arrayValue.size()) {
-                                                div(style: "font-weight: bold; font-size: 22px; text-align: center;", invoiceDsl.restaurantName)
+                                                div(class:"restaurant_name", invoiceDsl.restaurantName)
                                             }
                                         }
                                         break;
                                     case "address":
                                         tr {
                                             td(colspan: arrayValue.size()) {
-                                                div(style: "font-weight: bold; font-size: 15px; text-align: center;", invoiceDsl.address)
+                                                div(class:"address", invoiceDsl.address)
                                             }
                                         }
                                         break;
@@ -203,13 +205,13 @@ class InvoiceDsl {
                                         tr(style:"padding: 15px") {
                                             td(value: "Kasir: ") {
                                                 p("Kasir")
-                                                input(type: "text")
+                                                input(type: "text", class:"small-input")
                                             }
                                         }
                                         break;
                                     case "thankyou_notes":
                                         tr {
-                                            td(style: "text-align: center; font-size: 13px; padding-top: 15px", invoiceDsl.thankYouNotes)
+                                            td(class:"thankyou-note", invoiceDsl.thankYouNotes)
                                         }
                                         break;
                                     case "grand_total":
@@ -380,6 +382,7 @@ class InvoiceDsl {
             id "1"
             restaurant_name "2", "RM Sedap Malam"
             address "3", "Jalan Ganesha"
+            cashier_name "4"
             order_row 10
             order_no "5-1"
             order_name "5-2"
