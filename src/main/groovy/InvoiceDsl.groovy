@@ -104,8 +104,6 @@ class InvoiceDsl {
     }
 
     def getHtml() {
-//        printAll()
-
         for (int i = 1; i <= invoiceOrdering.size(); ++i) {
             if (!invoiceOrdering.containsKey(i)) {
                 errorMessages.add("Ordering must start from 1 and ordered")
@@ -152,6 +150,7 @@ class InvoiceDsl {
 
         if (errorMessages.size() == 0) {
             generateHtml(this)
+            System.out.println("Invoice berhasil dibuat. File dapat diakses di folder data/invoice.html")
         } else {
             for (String s : errorMessages) {
                 println(s)
@@ -171,10 +170,10 @@ class InvoiceDsl {
         builder.html {
             head {
                 title "Invoice " + invoiceDsl.restaurantName
-                link(href:"style.css", rel:"stylesheet")
-                link(href:"bootstrap.min.css", rel:"stylesheet")
+                link(href: "style.css", rel: "stylesheet")
+                link(href: "bootstrap.min.css", rel: "stylesheet")
             }
-            body(style:"font-family: sans-serif") {
+            body(style: "font-family: sans-serif") {
                 form {
                     table(style: "border: 1px dotted #ccc") {
                         for (Map.Entry<Integer, String> entry : invoiceDsl.invoiceOrdering.entrySet()) {
@@ -184,38 +183,38 @@ class InvoiceDsl {
                                 switch (arrayValue[0]) {
                                     case "id":
                                         tr {
-                                            td(class:"id-invoice", "No. 299")
+                                            td(class: "id-invoice", "No. 299")
                                         }
                                         break;
                                     case "restaurant_name":
                                         tr {
                                             td(colspan: arrayValue.size()) {
-                                                div(class:"restaurant_name", invoiceDsl.restaurantName)
+                                                div(class: "restaurant_name", invoiceDsl.restaurantName)
                                             }
                                         }
                                         break;
                                     case "address":
                                         tr {
                                             td(colspan: arrayValue.size()) {
-                                                div(class:"address", invoiceDsl.address)
+                                                div(class: "address", invoiceDsl.address)
                                             }
                                         }
                                         break;
                                     case "cashier_name":
-                                        tr(style:"padding: 15px") {
+                                        tr(style: "padding: 15px") {
                                             td("Kasir: ") {
 //                                                p("Kasir")
-                                                input(type: "text", class:"small-input")
+                                                input(type: "text", class: "small-input")
                                             }
                                         }
                                         break;
                                     case "thankyou_notes":
                                         tr {
-                                            td(class:"thankyou-note", invoiceDsl.thankYouNotes)
+                                            td(class: "thankyou-note", invoiceDsl.thankYouNotes)
                                         }
                                         break;
                                     case "grand_total":
-                                        tr{
+                                        tr {
                                             td(style: "text-align: right") {
                                                 label("Grand Total: ")
                                                 input(type: "number", disabled: true)
@@ -365,39 +364,6 @@ class InvoiceDsl {
 
     def methodMissing(String methodName, args) {
         errorMessages.add("Method " + methodName + " is not recognized")
-    }
-
-    public void printAll() {
-        println("restaurantName " + restaurantName)
-        println("address " + address)
-        println("thankYouNotes " + thankYouNotes)
-        println("orderRow " + orderRow)
-        for (Map.Entry<Integer, String> entry : invoiceOrdering.entrySet()) {
-            println(entry.getKey() + " " + entry.getValue())
-        }
-    }
-
-    static void main(String[] args) {
-        make {
-            id "1"
-            restaurant_name "2", "RM Sedap Malam"
-            address "3", "Jalan Ganesha"
-            cashier_name "4"
-            order_row 10
-            order_no "5-1"
-            order_name "5-2"
-            order_qty "5-3"
-            order_price "5-5"
-            order_subtotal "5-4"
-            total "6"
-            discount "7"
-            tax "8"
-            service_charge "9"
-            item_total "10"
-            grand_total "11"
-            thankyou_notes "12", "Terima kasih atas kunjungan Anda. Silakan datang kembali"
-            html
-        }
     }
 
 }
